@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function SelectLanguage (props) {
+const SelectLanguage = (props) => {
   var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
   return (
     <ul className='languages'>
-      {languages.map(function(lang) {
+      {languages.map((lang) => {
         return (
           <li
             style={lang === props.selectedLanguage ? {color: '#d0021b'} : null}

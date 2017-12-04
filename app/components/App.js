@@ -5,8 +5,9 @@ import {
   ReactRouter,
   Route 
 } from 'react-router-dom';
-import Nav from './Nav';
 import Home from './Home';
+import Battle from './Battle';
+import Nav from './Nav';
 
 export default class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ export default class App extends React.Component {
         <div className='container'>
           <Nav />
           <Route exact path='/' component={Home} />
+          <Route path='/battle' component={Battle} />
           <Route path='/popular' component={Popular} />
         </div>
       </Router>

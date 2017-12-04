@@ -7,7 +7,7 @@ export default class Home extends React.Component {
       <div className='home-container'>
         <h1>Github Battle</h1>
         <Link className='button' to='battle'>
-          Battle
+          Battle!
         </Link>
       </div>
     );

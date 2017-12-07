@@ -15,6 +15,27 @@ export default class Loading extends React.Component {
       text: props.text
     };
   }
+  componentDidMount() {
+    let stopper = this.props.text + '...';
+    this.setInterval = window.setInterval(function() {
+      if (this.state.text === stopper) {
+        this.setState(function() {
+          return {
+            text: this.props.text
+          }
+        });
+      } else {
+        this.setState(function(prevState) {
+          return {
+            text: prevState.text + '.'
+          }
+        });
+      }
+    }.bind(this), this.props.speed);
+  }
+  componentWillUnmount() {
+    window.clearInterval(this.interval);
+  }
   render() {
     return (
       <p style={styles.content}>
@@ -25,9 +46,11 @@ export default class Loading extends React.Component {
 }
 
 Loading.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  speed: PropTypes.number.isRequired
 }
 
 Loading.defaultProps = {
-  text: 'Loading'
+  text: 'Loading',
+  speed: 200
 }

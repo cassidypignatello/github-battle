@@ -16,7 +16,7 @@ function Nav() {
       </li>
       <li>
         <NavLink activeClassName='active' to='/popular'>
-          Popular
+          Popular Repos
         </NavLink>
       </li>
     </ul>

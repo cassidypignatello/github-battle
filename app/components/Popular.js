@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import api from '../utils/api';
+import Loading from './Loading';
 
 const SelectLanguage = (props) => {
   var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
@@ -29,8 +30,8 @@ const RepoGrid = (props) => {
             <div className='popular-rank'>#{index + 1}</div>
             <ul className='space-list-items'>
               <li>
-                <img 
-                  className='avatar' 
+                <img
+                  className='avatar'
                   src={repo.owner.avatar_url}
                   alt={'Avatar for ' + repo.owner.login}
                 />
@@ -60,7 +61,7 @@ export default class Popular extends React.Component {
     super(props);
     this.state = {
       selectedLanguage: 'All',
-      repos: []
+      repos: null
     };
     this.updateLanguage = this.updateLanguage.bind(this);
   }
@@ -71,7 +72,7 @@ export default class Popular extends React.Component {
     this.setState(function() {
       return {
         selectedLanguage: lang,
-        repos: []
+        repos: null
       }
     });
     api.fetchPopularRepos(lang)
@@ -86,11 +87,13 @@ export default class Popular extends React.Component {
   render() {
     return (
       <div>
-        <SelectLanguage 
+        <SelectLanguage
           selectedLanguage={this.state.selectedLanguage}
           onSelect={this.updateLanguage}
         />
-        <RepoGrid repos={this.state.repos} />
+        {!this.state.repos ?
+          <Loading /> :
+          <RepoGrid repos={this.state.repos} />}
       </div>
     );
   }

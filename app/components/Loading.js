@@ -16,22 +16,13 @@ export default class Loading extends React.Component {
     };
   }
   componentDidMount() {
-    let stopper = this.props.text + '...';
-    this.setInterval = window.setInterval(function() {
-      if (this.state.text === stopper) {
-        this.setState(function() {
-          return {
-            text: this.props.text
-          }
-        });
-      } else {
-        this.setState(function(prevState) {
-          return {
-            text: prevState.text + '.'
-          }
-        });
-      }
-    }.bind(this), this.props.speed);
+    const { text, speed } = this.props;
+    const stopper = text + '...';
+    this.setInterval = window.setInterval(() => {
+      this.state.text === stopper ?
+      this.setState(() => ({ text: text })) :
+      this.setState((prevState) => ({ text: prevState.text + '.' }));  
+    }, speed);
   }
   componentWillUnmount() {
     window.clearInterval(this.interval);

@@ -1,11 +1,6 @@
 import React from 'react';
 import Popular from './Popular';
-import {
-  BrowserRouter as Router,
-  ReactRouter,
-  Route,
-  Switch
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Battle from './Battle';
 import Nav from './Nav';
